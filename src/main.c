@@ -1,10 +1,9 @@
-#include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-#include <unistdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-#include <stdio.h>
-#include <stdio.h>
 
 //Function declarations
 int cshell_cd(char **args);
@@ -165,6 +164,8 @@ char **cshell_split_line(char *line) {
   return tokens ;
 }
 
+//main loop to get input and execute them
+
 void cshell_loop(void) {
   char *line;
   char **args;
@@ -179,4 +180,16 @@ void cshell_loop(void) {
     free(line);
     free(args);
   } while (status);
+}
+
+int main(int argc, char **argv) {
+  //should load config files if any
+  //no config files at the moment
+
+  //stat the loop
+  cshell_loop();
+
+  //perform any shutdown/cleanup if needed
+  // and we fninally close
+  return EXIT_SUCCESS;
 }
